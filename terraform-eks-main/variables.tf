@@ -12,3 +12,8 @@ variable "aws_region" {
   description = "aws region"
 }
 
+variable "env" {
+  description = "dev"
+  type        = string
+}
+
