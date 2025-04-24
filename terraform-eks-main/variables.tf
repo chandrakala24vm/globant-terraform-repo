@@ -14,7 +14,14 @@ variable "aws_region" {
 
 variable "env" {
   description = "dev"
-  default = "dev"
   type        = string
+  default = "dev"
 }
+
+# variable "cluster_name" {
+#   description = "Name of the Cluster"
+#   type        = string
+#   default     = "globant-project"
+# }
+
 
