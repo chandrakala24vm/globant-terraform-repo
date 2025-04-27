@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Copy dependencies
-COPY requirements.txt .
+COPY app/requirements.txt .
 
 # Install dependencies in virtualenv
 RUN python -m venv /opt/venv && \
