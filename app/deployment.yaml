@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: python-container
-        image: your-dockerhub-username/python-app:latest # <-- replace with your image
+        image: globantecrrepo:latest 
         ports:
-        - containerPort: 5000 # Assuming your Python app runs on port 5000
+        - containerPort: 5000 
