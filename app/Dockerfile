@@ -28,7 +28,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy virtualenv and app
 COPY --from=base /opt/venv /opt/venv
-COPY app /app
+COPY . /app
 
 WORKDIR /app
 
