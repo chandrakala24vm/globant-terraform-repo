@@ -3,7 +3,7 @@ module "eks" {
   version         = "20.8.4"
   cluster_name    = local.cluster_name
   cluster_version = var.kubernetes_version
-  subnet_ids      = module.vpc.private_subnets
+  subnet_ids      = data.aws_subnets.default_public.ids
 
   enable_irsa = true
   create_cloudwatch_log_group = true
@@ -12,7 +12,7 @@ module "eks" {
     cluster = "Globant"
   }
   
-  vpc_id = module.vpc.vpc_id
+  vpc_id = data.aws_vpc.default.id
 
   cluster_addons = {
    aws-ebs-csi-driver= {}
