@@ -12,7 +12,7 @@ module "eks" {
   enable_cluster_creator_admin_permissions = true
 
   cluster_endpoint_public_access         = true
-  cluster_endpoint_public_access_cidrs   = ["0.0.0.0/0"] # Replace with your IP range for security
+  cluster_endpoint_public_access_cidrs   = ["0.0.0.0/0"]
 
   authentication_mode = "API_AND_CONFIG_MAP"
 
