@@ -4,21 +4,22 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = var.kubernetes_version
   subnet_ids      = [var.public_subnet_az1_id, var.public_subnet_az2_id]
+  vpc_id          = module.vpc.vpc_id
 
-  enable_irsa = true
-  create_cloudwatch_log_group = true
+  authentication_mode = "API_AND_CONFIG_MAP"
+
+  enable_irsa                     = true
+  create_cloudwatch_log_group     = true
   enable_cluster_creator_admin_permissions = true
-  cluster_endpoint_public_access = true
+  cluster_endpoint_public_access  = true
 
   tags = {
     cluster = "Globant"
   }
-  
-  vpc_id = module.vpc.vpc_id
 
   cluster_addons = {
-   aws-ebs-csi-driver= {}
-   aws-efs-csi-driver={}
+    aws-ebs-csi-driver = {}
+    aws-efs-csi-driver = {}
   }
 
   eks_managed_node_group_defaults = {
@@ -40,16 +41,16 @@ module "eks" {
         "k8s.io/cluster-autoscaler/enabled"             = "true"
         "k8s.io/cluster-autoscaler/${local.cluster_name}" = "owned"
       }
-        update_config = {
+      update_config = {
         max_unavailable_percentage = 50
       }
     }
-
-  tags = {
-    "k8s.io/cluster-autoscaler/enabled"             = "true"
-    "k8s.io/cluster-autoscaler/${local.cluster_name}" = "owned"
   }
-      ####################
+
+  access_entries = {
+    terraform-demo = {
+      principal_arn     = "arn:aws:iam::500662818810:user/terraform-demo"
+      kubernetes_groups = ["system:masters"]
+    }
   }
 }
-
