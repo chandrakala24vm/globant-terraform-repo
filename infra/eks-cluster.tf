@@ -46,15 +46,6 @@ module "eks" {
     }
   }
 
-  access_entries = {
-    ec2-connect = {
-      principal_arn     = "arn:aws:iam::500662818810:role/ec2-connect"
-      kubernetes_groups = ["system:masters"]
-      type              = "STANDARD"
-      username          = "ec2-connect"
-    }
-  }
-
   tags = {
     cluster = "Globant"
   }
