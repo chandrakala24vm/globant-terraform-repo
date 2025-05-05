@@ -3,10 +3,6 @@ variable "kubernetes_version" {
   description = "kubernetes version"
 }
 
-variable "vpc_cidr" {
-  default     = "10.0.0.0/16"
-  description = "default CIDR range of the VPC"
-}
 variable "aws_region" {
   default = "ap-south-1"
   description = "aws region"
@@ -23,5 +19,21 @@ variable "env" {
 #   type        = string
 #   default     = "globant-project"
 # }
+
+variable "public_subnet_az1_id" {
+  description = "Subnet ID for AZ1"
+  type        = string
+}
+
+variable "public_subnet_az2_id" {
+  description = "Subnet ID for AZ2"
+  type        = string
+}
+
+variable "vpc_cidr" {
+  description = "Default CIDR block for the VPC"
+  type        = string
+  default     = "10.0.0.0/16"
+}
 
 

@@ -3,10 +3,12 @@ module "eks" {
   version         = "20.8.4"
   cluster_name    = local.cluster_name
   cluster_version = var.kubernetes_version
-  subnet_ids      = module.vpc.private_subnets
+  subnet_ids      = [var.public_subnet_az1_id, var.public_subnet_az2_id]
 
   enable_irsa = true
   create_cloudwatch_log_group = true
+  enable_cluster_creator_admin_permissions = true
+  cluster_endpoint_public_access = true
 
   tags = {
     cluster = "Globant"
